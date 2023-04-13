@@ -1,7 +1,9 @@
 const App: React.FC = () => {
     return (
-        <div className="App">
-            React weather app
+        <div className="bg day-cold">
+            <div className="app">
+                <input className="search-bar" type="text" placeholder="Location..." />
+            </div>
         </div>
     );
 };
