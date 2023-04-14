@@ -45,7 +45,6 @@ body {
 #weather-info {
     margin: 2em auto;
     text-align: center;
-    color: rgb(255, 255, 255);
 }
 
 #weather-info span {
@@ -62,11 +61,6 @@ body {
 }
 
 #weather-info #temp {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
     padding: 0.5em 1em;
     border-radius: 0.5em;
     background-color: rgba(255, 255, 255, 0.2);
@@ -104,6 +98,17 @@ body {
     background-image: url('assets/bg-night-cold.jpg');
 }
 
-.shadow-std {
+.text-white {
+    color: rgb(255, 255, 255);
+}
+
+.text-shadow {
     text-shadow: 0.075em 0.075em rgba(50, 50, 70, 0.5);
+}
+
+.abs-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
