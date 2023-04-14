@@ -43,6 +43,8 @@ body {
 }
 
 #weather-info {
+    @extend .text-white;
+
     margin: 2em auto;
     text-align: center;
 }
@@ -52,15 +54,22 @@ body {
 }
 
 #weather-info #location {
+    @extend .text-shadow;
+
     font-size: xx-large;
 }
 
 #weather-info #date {
+    @extend .text-shadow;
+
     font-size: large;
     font-style: italic;
 }
 
 #weather-info #temp {
+    @extend .abs-centered;
+    @extend .text-shadow;
+
     padding: 0.5em 1em;
     border-radius: 0.5em;
     background-color: rgba(255, 255, 255, 0.2);
@@ -71,6 +80,8 @@ body {
 }
 
 #weather-info #details {
+    @extend .text-shadow;
+
     position: absolute;
     bottom: 0;
     width: 100%;
