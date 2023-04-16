@@ -11,22 +11,33 @@ const App: React.FC = () => {
     const [query, setQuery] = useState('');
     const [weather, setWeather] = useState<WeatherData | null>(initialWeather);
     const [bg, setBg] = useState(initialBg);
+    const [updateTask, setUpdateTask] = useState<number>();
 
-    const updateWeather = async (event: React.FormEvent): Promise<void> => {
-        event.preventDefault();
+    const updateWeather = (query: string): void => {
         fetchWeatherData(query)
             .then(data => {
                 setWeather(data);
                 setBg(chooseBg(data));
             })
             .catch(() => setWeather(null));
+    };
+
+    const scheduleUpdate = (): void => {
+        clearInterval(updateTask);
+        setUpdateTask(setInterval(() => updateWeather(query), 60 * 1000));
+    };
+
+    const submit = (event: React.FormEvent): void => {
+        event.preventDefault();
+        updateWeather(query);
+        scheduleUpdate();
         setQuery('');
     };
 
     return (
         <div className={`bg ${bg}`}>
             <div id="app">
-                <form onSubmit={updateWeather}>
+                <form onSubmit={submit}>
                     <input id="search-bar" type="text" placeholder="Location..."
                         onChange={e => setQuery(e.target.value)} value={query} />
                 </form>
