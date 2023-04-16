@@ -20,6 +20,7 @@ export interface WeatherData {
     countryCode: string,
     date: Date,
     temp: number,
+    feelsLike: number,
     details: string
 }
 
@@ -29,12 +30,13 @@ const recalculateDate = (initial: Date, timezoneSec: number): Date => {
 
 export const fetchWeatherData = async (query: string): Promise<WeatherData> => {
     const data = await fetchAsJson(`${API_URLS.weather}` +
-        `?q=${query}&units=metric&APPID=${import.meta.env.VITE_WEATHER_API_KEY}`) as any;
+        `?q=${query}&units=metric&APPID=${import.meta.env.VITE_WEATHER_API_KEY}`) as any; // eslint-disable-line
     return {
         city: data.name,
         countryCode: data.sys.country,
         date: recalculateDate(new Date(), data.timezone * 1000),
         temp: data.main.temp,
+        feelsLike: data.main.feels_like,
         details: data.weather[0].main
     };
 };

@@ -43,10 +43,10 @@ body {
 }
 
 #weather-info {
+    @extend .text-center;
     @extend .text-white;
 
     margin: 2em auto;
-    text-align: center;
 }
 
 #weather-info span {
@@ -66,17 +66,32 @@ body {
     font-style: italic;
 }
 
-#weather-info #temp {
+#weather-info #temp-info {
     @extend .abs-centered;
-    @extend .text-shadow;
 
-    padding: 0.5em 1em;
-    border-radius: 0.5em;
+    padding: 1em 2em;
+    border-radius: 1em;
     background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0.075em 0.15em rgba(0, 0, 0, 0.2);
+    box-shadow: 0.15em 0.3em rgba(0, 0, 0, 0.2);
+}
+
+#temp-info #temp {
+    @extend .text-shadow;
 
     font-size: 2.4em;
     font-weight: bold;
+}
+
+#temp-info #feels-like {
+    @extend .text-shadow;
+
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+
+    white-space: nowrap;
+
+    margin-top: 0.2em;
 }
 
 #weather-info #details {
@@ -107,6 +122,10 @@ body {
 
 .bg.night-cold {
     background-image: url('assets/bg-night-cold.jpg');
+}
+
+.text-center {
+    text-align: center;
 }
 
 .text-white {

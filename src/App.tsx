@@ -25,8 +25,11 @@ const App: React.FC = () => {
                         onChange={e => setQuery(e.target.value)} value={query} />
                 </form>
                 {weather !== null ?
-                    <WeatherInfo weather={weather} /> : 
-                    <span className="abs-centered text-white text-shadow">Sorry, seems, like a wrong location...</span>
+                    <WeatherInfo weather={weather} /> 
+                    : 
+                    <span className="abs-centered text-center text-white text-shadow">
+                        Sorry, seems like a wrong location...
+                    </span>
                 }
             </div>
         </div>
