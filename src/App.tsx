@@ -8,25 +8,31 @@ const initialWeather = await fetchWeatherData(initialCity);
 const initialBg = initialWeather !== null ? chooseBg(initialWeather) : 'day-warm';
 
 const App: React.FC = () => {
+    const UPDATE_DELAY = 60;
+
     const [query, setQuery] = useState('');
     const [weather, setWeather] = useState<WeatherData | null>(initialWeather);
     const [bg, setBg] = useState(initialBg);
     const [updateTask, setUpdateTask] = useState<number>(() => 
-        setInterval(() => updateWeather(initialCity), 60 * 1000)
+        setInterval(() => updateWeather(initialCity), UPDATE_DELAY * 1000)
     );
 
     const updateWeather = (query: string): void => {
+        console.log('hui');
         fetchWeatherData(query)
             .then(data => {
                 setWeather(data);
                 setBg(chooseBg(data));
             })
-            .catch(() => setWeather(null));
+            .catch(() => {
+                setWeather(null);
+                clearInterval(updateTask + 1);
+            });
     };
 
     const scheduleUpdate = (): void => {
         clearInterval(updateTask);
-        setUpdateTask(setInterval(() => updateWeather(query), 60 * 1000));
+        setUpdateTask(setInterval(() => updateWeather(query), UPDATE_DELAY * 1000));
     };
 
     const submit = (event: React.FormEvent): void => {
