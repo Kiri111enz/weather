@@ -11,7 +11,9 @@ const App: React.FC = () => {
     const [query, setQuery] = useState('');
     const [weather, setWeather] = useState<WeatherData | null>(initialWeather);
     const [bg, setBg] = useState(initialBg);
-    const [updateTask, setUpdateTask] = useState<number>();
+    const [updateTask, setUpdateTask] = useState<number>(() => 
+        setInterval(() => updateWeather(initialCity), 60 * 1000)
+    );
 
     const updateWeather = (query: string): void => {
         fetchWeatherData(query)
