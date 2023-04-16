@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import WeatherInfo from 'components/WeatherInfo';
 import { fetchIpData, fetchWeatherData, WeatherData } from 'services/http';
+import { chooseBg } from 'utils/bg';
 
 const ipData = await fetchIpData();
 const weatherData = await fetchWeatherData(ipData.city);
@@ -18,7 +19,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="bg day-warm">
+        <div className={`bg ${weather !== null ? chooseBg(weather) : 'day-warm'}`}>
             <div id="app">
                 <form onSubmit={updateWeather}>
                     <input id="search-bar" type="text" placeholder="Location..."
